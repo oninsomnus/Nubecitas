@@ -18,7 +18,7 @@ Ubicados en el siguiente directorio: `<repo>/server/` podemos seguir estas intru
 Para crear la imagen podemos correr este siguiente comando:
 
 ```
-npm run build:image
+npm run docker:image
 ```
 
 Para correr el container podemos correr este siguiente comando:
@@ -26,11 +26,17 @@ Para correr el container podemos correr este siguiente comando:
 - Para UNIX:
 
 ```
-npm run cnt:unix
+npm run docker:cnt:unix
 ```
 
 - Para PowerShell:
 
 ```
-npm run cnt:pshell
+npm run docker:cnt:pshell
+```
+
+Para eliminar el docker container:
+
+```
+npm run docker:rm
 ```
