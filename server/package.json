@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:image": "docker build -f Dockerfile -t jdcamacho/nube-server .",
+    "cnt:unix": "docker run -t -p 3000:3000 -d -v $(pwd):/usr/app/server --name nube-server jdcamacho/nube-server",
+    "cnt:pshell": "docker run -t -p 3000:3000 -d -v ${PWD}:/usr/app/server --name nube-server jdcamacho/nube-server"
   },
   "author": "",
   "license": "ISC",
