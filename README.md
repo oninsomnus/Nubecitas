@@ -5,9 +5,15 @@ Web + Server + DB
 
 ### Ambiente
 
-Para correr el server es recomendo usar la version de nodejs: 18
+Para correr el server es recomendo usar la version de nodejs: 18.
 
-Se necesita tener la Docker instalado localmente para el ambiente de desarrollo
+Se necesita tener la Docker instalado localmente para el ambiente de desarrollo.
+
+Cierta parte del codigo esta escrita en `ts` para poder correr el codigo tienes que tener instalado `typescript` en forma global, para ello se puede usar este comando:
+
+```
+npm install -g typescript
+```
 
 --- 
 
