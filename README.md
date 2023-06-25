@@ -1,8 +1,42 @@
 # Nubecitas
-Web + Server + DB +
+Web + Server + DB
 
-Docker image build `docker build -f Dockerfile -t jdcamacho/nube-server .`.
+---
 
-Docker container run `docker run -t -p 3000:3000 -d -v .:/usr/app/server --name nube-server jdcamacho/nube-server`
+### Ambiente
 
-Version de nodejs: 18
+Para correr el server es recomendo usar la version de nodejs: 18
+
+Se necesita tener la Docker instalado localmente para el ambiente de desarrollo
+
+--- 
+
+### Setup del servidor web
+
+Ubicados en el siguiente directorio: `<repo>/server/` podemos seguir estas intrucciones para hacer el setup.
+
+Para crear la imagen podemos correr este siguiente comando:
+
+```
+npm run docker:image
+```
+
+Para correr el container podemos correr este siguiente comando:
+
+- Para UNIX:
+
+```
+npm run docker:cnt:unix
+```
+
+- Para PowerShell:
+
+```
+npm run docker:cnt:pshell
+```
+
+Para eliminar el docker container:
+
+```
+npm run docker:rm
+```
