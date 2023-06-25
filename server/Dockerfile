@@ -5,5 +5,6 @@ RUN mkdir /usr/app && mkdir /usr/app/server
 WORKDIR /usr/app/server
 COPY . .
 RUN npm install
+RUN npm install -g typescript
 CMD ["npm", "run", "start:dev"]
 EXPOSE 3000
