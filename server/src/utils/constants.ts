@@ -3,8 +3,8 @@ export const PORTS = {
     HTTP: 3000
 };
 const DEV_ENDPOINTS = {
-    WS: `ws://localhost:${PORTS.WS}`,
-    HTTP: `http://localhost:${PORTS.HTTP}`
+    WS: `ws://127.0.0.1:${PORTS.WS}`,
+    HTTP: `http://127.0.0.1:${PORTS.HTTP}`
 }
 export const ENDPOINTS = {
     DEV: DEV_ENDPOINTS
