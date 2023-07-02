@@ -17,7 +17,7 @@ npm install -g typescript
 
 --- 
 
-### Setup del servidor web
+### Setup de en Docker para el servidor
 
 Ubicados en el siguiente directorio: `<repo>/server/` podemos seguir estas intrucciones para hacer el setup.
 
@@ -29,20 +29,32 @@ npm run docker:image
 
 Para correr el container podemos correr este siguiente comando:
 
-- Para UNIX:
-
 ```
+# Para Unix:
 npm run docker:cnt:unix
-```
 
-- Para PowerShell:
-
-```
+# Para Windows:
 npm run docker:cnt:pshell
 ```
 
-Para eliminar el docker container:
+Para parar y borrar el container:
+
+```
+npm run docker:stop
+```
+Para eliminar la imagen de docker:
 
 ```
 npm run docker:rm
+```
+---
+Para correr los tests:
+
+```
+npm run test
+```
+
+Para correr un test especifico:
+```
+npm run test:s <nombre-del-archivo>
 ```
