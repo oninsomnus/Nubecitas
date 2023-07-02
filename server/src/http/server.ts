@@ -8,5 +8,5 @@ export const app = express();
 export const startHttpServer = () => {
     app.get(constants.HTTP_PATHS.ROOT, (req, res) => controllers.root(req, res));
     app.get(constants.HTTP_PATHS.TEST, (req, res) => controllers.ping(req, res));
-    app.listen(constants.PORTS.HTTP, () => controllers.listen());
+    app.listen(constants.PORTS.HTTP, '0.0.0.0', () => controllers.listen());
 }

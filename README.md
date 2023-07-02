@@ -49,12 +49,14 @@ npm run docker:image:rm
 ```
 ---
 ## Test
+Para correr los test de forma local tenemos que tener el servidor disponible en el localhost. Es recomendable estar seguro de que los test estan pasando de forma local antes de hacer un Pull Request ya que hay un job en el github action que comprobara que todos los test estan pasando
 
 ```
 npm run test
 ```
 
 Para correr un test especifico:
+
 ```
 npm run test:s <nombre-del-archivo>
 ```
