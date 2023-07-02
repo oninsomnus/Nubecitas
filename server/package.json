@@ -8,6 +8,7 @@
     "test:s": "jest --",
     "start": "node ./dist/server.js",
     "start:dev": "nodemon ./src/server.ts",
+    "start:silent": "nohup npm run start &",
     "build": "tsc",
     "docker:stop": "docker stop nube-server; docker rm nube-server;",
     "docker:image": "docker build -f Dockerfile -t jdcamacho/nube-server .",
