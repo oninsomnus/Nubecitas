@@ -6,7 +6,7 @@ on:
 jobs:
   server-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 2
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -17,12 +17,9 @@ jobs:
       - name: Installing modules
         working-directory: ./server
         run: npm install
-      - name: Build docker images
+      - name: Running the server
         working-directory: ./server
-        run: npm run docker:image
-      - name: Run docker container
-        working-directory: ./server
-        run: npm run docker:cnt:unix
-      - name: Run test
+        run: npm run start:dev
+      - name: Running the test
         working-directory: ./server
         run: npm run test
