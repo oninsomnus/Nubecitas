@@ -25,4 +25,4 @@ jobs:
         run: npm run start:silent
       - name: Running the test
         working-directory: ./server
-        run: npm run start:silent
+        run: npm run test
