@@ -19,7 +19,7 @@ jobs:
         run: npm install
       - name: Running the server
         working-directory: ./server
-        run: npm run start:dev
+        run: npm run build
       - name: Running the test
         working-directory: ./server
-        run: npm run test
+        run: npm run start:silent
