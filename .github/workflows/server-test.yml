@@ -1,0 +1,26 @@
+name: server-test
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setting up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+        working-directory: ./server
+        run: npm install
+      - name: Build docker images
+        working-directory: ./server
+        run: npm run docker:image
+      - name: Run docker container
+        working-directory: ./server
+        run: npm run docker:cnt:unix
+      - name: Run test
+        working-directory: ./server
+        run: npm run test
