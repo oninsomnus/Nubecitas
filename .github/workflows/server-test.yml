@@ -13,6 +13,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
+      - name: Installing modules
         working-directory: ./server
         run: npm install
       - name: Build docker images
