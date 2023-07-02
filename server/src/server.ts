@@ -9,8 +9,8 @@ const app = express();
 const wss = new ws.Server({ port: WS_PORT });
 
 app.get('/', (req, res) => {
-    logger.info("");
-    res.send('Hello World!');
+    logger.info("Connection detected");
+    res.send('Helloo World!');
 });
 
 app.get('/ping', (req, res) => {
