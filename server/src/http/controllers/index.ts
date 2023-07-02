@@ -9,5 +9,5 @@ export const ping = (req: any, res: any) =>
 
 export const root = (req: any, res: any) => { 
     logger.info("Connection detected");
-    res.send('Helloo Worlad!');
+    res.send('holis');
 };

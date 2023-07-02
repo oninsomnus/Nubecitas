@@ -11,18 +11,89 @@ describe('http server', () => {
 });
 
 describe('ws server', () => {
+
     test('it should return the expected test message', async () => {
         let expectedMsg: any;
         const testMsg = "Test message";
         const client = new WebSocket(constants.ENDPOINTS.DEV.WS);
         await waitForWebSocketClient(client);
         client.on("message", (data) => expectedMsg = data);
-        client.send(testMsg);
+        client.send(JSON.stringify({ channel: "test", data: testMsg }));
         await new Promise(async resolve => {
             while (!expectedMsg) await delay(1000);
             resolve(true);
         });
         client.close();
-        expect(expectedMsg.toString()).toBe(testMsg);
-   });
+        expect(expectedMsg.toString()).toEqual(testMsg);
+    });
+
+    test('it should return an error message', async () => {
+        let expectedMsg: any;
+        const testMsg = "Test message";
+        const client = new WebSocket(constants.ENDPOINTS.DEV.WS);
+        await waitForWebSocketClient(client);
+        client.on("message", (data) => expectedMsg = data);
+
+        client.send(testMsg); //prueba
+
+        await new Promise(async resolve => {
+            while (!expectedMsg) await delay(1000);
+            resolve(true);
+        });
+        client.close();
+        expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_WS_TYPE}`);
+    });
+
+    test('no channel attribute', async () => {
+        let expectedMsg: any;
+        const testMsg = "Test message";
+        const client = new WebSocket(constants.ENDPOINTS.DEV.WS);
+        let channel;
+        await waitForWebSocketClient(client);
+        client.on("message", (data) => expectedMsg = data);
+
+        client.send(JSON.stringify({ data: testMsg })); //prueba
+
+        await new Promise(async resolve => {
+            while (!expectedMsg) await delay(1000);
+            resolve(true);
+        });
+        client.close();
+        expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_CHANNEL(channel)}`);
+    });
+
+    test('no data attribute', async () => {
+        let expectedMsg: any;
+        const testMsg = "Test message";
+        const client = new WebSocket(constants.ENDPOINTS.DEV.WS);
+        await waitForWebSocketClient(client);
+        client.on("message", (data) => expectedMsg = data);
+
+        client.send(JSON.stringify({ channel: "test" })); //prueba
+
+        await new Promise(async resolve => {
+            while (!expectedMsg) await delay(1000);
+            resolve(true);
+        });
+        client.close();
+        expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_WS_TYPE}`);
+    });
+
+    test('wrong channel', async () => {
+        let expectedMsg: any;
+        const testMsg = "Test message";
+        const channel = "Bard"
+        const client = new WebSocket(constants.ENDPOINTS.DEV.WS);
+        await waitForWebSocketClient(client);
+        client.on("message", (data) => expectedMsg = data);
+
+        client.send(JSON.stringify({ channel, data: "example" })); //prueba
+
+        await new Promise(async resolve => {
+            while (!expectedMsg) await delay(1000);
+            resolve(true);
+        });
+        client.close();
+        expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_CHANNEL(channel)}`);
+    });
 });

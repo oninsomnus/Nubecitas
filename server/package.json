@@ -7,7 +7,7 @@
     "test": "jest",
     "test:s": "jest --",
     "start": "node ./dist/server.js",
-    "start:dev": "nodemon ./src/server.ts",
+    "start:dev": "nodemon -L ./src/server.ts",
     "start:silent": "nohup npm run start &",
     "build": "tsc",
     "docker:stop": "docker stop nube-server; docker rm nube-server;",
@@ -32,6 +32,7 @@
     "jest": "^29.5.0",
     "nodemon": "^2.0.22",
     "ts-jest": "^29.1.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "@types/ws": "^8.5.5"
   }
 }
