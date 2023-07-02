@@ -17,7 +17,7 @@ npm install -g typescript
 
 --- 
 
-### Setup de en Docker para el servidor
+## DEV Setup
 
 Ubicados en el siguiente directorio: `<repo>/server/` podemos seguir estas intrucciones para hacer el setup.
 
@@ -45,10 +45,10 @@ npm run docker:stop
 Para eliminar la imagen de docker:
 
 ```
-npm run docker:rm
+npm run docker:image:rm
 ```
 ---
-Para correr los tests:
+## Test
 
 ```
 npm run test

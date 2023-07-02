@@ -7,4 +7,4 @@ COPY . .
 RUN npm install
 RUN npm install -g typescript
 CMD ["npm", "run", "start:dev"]
-EXPOSE 3000
+EXPOSE 3000 3500
