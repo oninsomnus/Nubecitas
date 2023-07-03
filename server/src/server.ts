@@ -1,5 +1,5 @@
-import { startHttpServer } from "./http/server";
-import { startWebsocketServer } from "./websocket/server";
+import { startHttpServer } from "./http";
+import { startWebsocketServer } from "./websocket";
 
 (function(){
     startHttpServer();
