@@ -1,7 +1,5 @@
-import { logger } from '../utils/logger';
 import express from 'express';
-
-import * as constants from '../utils/constants';
+import { constants } from '../utils';
 import * as controllers from './controllers';
 export const app = express();
 

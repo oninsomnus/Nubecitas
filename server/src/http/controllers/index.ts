@@ -1,13 +1,12 @@
-import { logger } from "../../utils/logger";
-import * as constants from '../../utils/constants';
+import { logger, constants } from "../../utils/";
 
 export const listen = () => 
-    logger.info(`Server app listening on port ${constants.PORTS.HTTP}`)
+    logger.info(constants.MESSAGES.PORT_LISTENING);
 
 export const ping = (req: any, res: any) => 
-    res.send('pong');
+    res.send(constants.MESSAGES.PONG);
 
 export const root = (req: any, res: any) => { 
-    logger.info("Connection detected");
+    logger.info(constants.MESSAGES.HTTP_CONNECTION_STABLISHED);
     res.send('holis');
 };
