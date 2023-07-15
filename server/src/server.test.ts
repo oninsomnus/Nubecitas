@@ -96,4 +96,11 @@ describe('ws server', () => {
         client.close();
         expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_CHANNEL(channel)}`);
     });
+
+    test('transform image', () => {
+        // dado equis imagen (test-file folder)
+        // fs module
+        // read image
+        // recibir un base64 url...
+    })
 });

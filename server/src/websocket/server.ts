@@ -17,6 +17,10 @@ const testChannel = (args: IWebSocketChannel) => {
     logger.info(`[ws] channel: ${channel} data: ${data}`);
 }
 
+const imageChannel = () => {
+    //transformar imagen
+}
+
 const router = {
     test: testChannel
 }
