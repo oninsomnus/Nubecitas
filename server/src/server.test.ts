@@ -71,4 +71,12 @@ describe('ws server', () => {
         await waitForMessage();
         expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_CHANNEL(channel)}`);
     });
+
+    test.only('image', async () => {
+        const channel = "image"
+        client.on("message", (data: string) => expectedMsg = data);
+        client.send(JSON.stringify({ channel, data: "example" })); //pasar la imagen en binario en data:example
+        await waitForMessage();
+        expect(expectedMsg.toString()).toEqual(`imagen recibida`); // poner el mensaje en \server\src\utils\constants.ts
+    });
 });

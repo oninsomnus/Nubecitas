@@ -1,5 +1,6 @@
 import * as channels from '../channels';
 
 export const routers = {
-    test: channels.test
+    test: channels.test,
+    image: channels.image
 };
