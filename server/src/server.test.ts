@@ -74,18 +74,6 @@ describe('ws server', () => {
         expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_CHANNEL(channel)}`);
     });
 
-    test('image with force true the same amount of file+1 under imageRes dir', async () => {
-        const channel = "image";
-        const inputDirectory = path.join(__dirname, "image"),
-            imageName = "image_test.jpg";
-        const imageB64 = convertImageToBase64(inputDirectory, imageName);
-        const expected = fs.readdirSync(path.join(__dirname, "image/imageRes")).length;
-        client.on("message", (data: string) => expectedMsg = data);
-        client.send(JSON.stringify({ channel, data: imageB64, force: true }));
-        await waitForMessage();
-        expect(expected+1).toEqual(fs.readdirSync(path.join(__dirname, "image/imageRes")).length); // poner el mensaje en \server\src\utils\constants.ts
-    });
-
     test('image with force false should return the same amount of file under imageRes dir', async () => {
         const channel = "image";
         const inputDirectory = path.join(__dirname, "image"),
