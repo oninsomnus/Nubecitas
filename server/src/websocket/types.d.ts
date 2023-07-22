@@ -2,6 +2,7 @@ import { WebSocket } from 'ws';
 
 export interface IWebSocketChannel extends IWebSocket{
     data?: string,
+    force?: boolean,
     channel?: string
 }
 

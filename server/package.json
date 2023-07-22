@@ -9,6 +9,7 @@
     "start": "node ./dist/server.js",
     "start:dev": "nodemon -L ./src/server.ts",
     "start:silent": "nohup npm run start &",
+    "clean:images": "rm ./src/image/imageRes/*.jpg",
     "build": "tsc; mkdir ./dist/image; mkdir ./dist/image/imageRes; cp ./src/image/*.jpg ./dist/image",
     "docker:stop": "docker stop nube-server; docker rm nube-server;",
     "docker:image": "docker build -f Dockerfile -t jdcamacho/nube-server .",

@@ -26,7 +26,18 @@ export const saveBase64AsImage = (base64String: string, outputDirectory: string,
     fs.writeFileSync(imagePath, imageBuffer);
     return imagePath;
 }
-
-export const intervalSaveImage = (args:{force?:boolean, esp?:string}): boolean => {
-    return args.force;
+export const intervalDifference = (seconds: number, currentTimestamp: number): boolean => {
+    const globalTimestamp = Number(process.env.TIMESTAMP);
+    if(!globalTimestamp) process.env.TIMESTAMP = String(currentTimestamp);
+    const timeDifferenceMinutes = (currentTimestamp - globalTimestamp) / 1000;
+    return timeDifferenceMinutes > seconds;
+}
+export const intervalSaveImage = (args?:{intervalSeconds?: number, force?:boolean, esp?:string}): boolean => {
+    if(args?.force) return args.force;
+    if(!args?.intervalSeconds) return false;
+    
+    const currentTimestamp = Date.now();
+    const isDifferent = intervalDifference(args.intervalSeconds, currentTimestamp);
+    if(isDifferent) process.env.TIMESTAMP = String(currentTimestamp);
+    return isDifferent;
 }
