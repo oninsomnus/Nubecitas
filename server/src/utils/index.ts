@@ -28,6 +28,5 @@ export const saveBase64AsImage = (base64String: string, outputDirectory: string,
 }
 
 export const intervalSaveImage = (args:{force?:boolean, esp?:string}): boolean => {
-    console.log(args.force);
     return args.force;
 }

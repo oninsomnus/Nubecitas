@@ -3,4 +3,5 @@ dist
 .DS_Store
 logs
 nohup.out
-server/src/image/imageRes
+server/src/image/imageRes/*
+!server/src/image/imageRes/.gitkeep
