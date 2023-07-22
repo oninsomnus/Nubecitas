@@ -9,7 +9,7 @@
     "start": "node ./dist/server.js",
     "start:dev": "nodemon -L ./src/server.ts",
     "start:silent": "nohup npm run start &",
-    "build": "tsc",
+    "build": "tsc; mkdir ./dist/image; mkdir ./dist/image/imageRest; cp ./src/image/*.jpg ./dist/image",
     "docker:stop": "docker stop nube-server; docker rm nube-server;",
     "docker:image": "docker build -f Dockerfile -t jdcamacho/nube-server .",
     "docker:cnt:unix": "docker run -t -p 3000:3000 -p 3500:3500 -d -v $(pwd):/usr/app/server --name nube-server jdcamacho/nube-server",
@@ -29,10 +29,11 @@
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/supertest": "^2.0.12",
+    "@types/ws": "^8.5.5",
+    "copyfiles": "^2.4.1",
     "jest": "^29.5.0",
     "nodemon": "^2.0.22",
     "ts-jest": "^29.1.0",
-    "ts-node": "^10.9.1",
-    "@types/ws": "^8.5.5"
+    "ts-node": "^10.9.1"
   }
 }
