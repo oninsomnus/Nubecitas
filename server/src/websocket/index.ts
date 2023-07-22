@@ -20,12 +20,14 @@ const handleError = (args: IWebSocketError): null => {
 }
 
 const resolveMessage = (ws: WebSocket, message: string): void | null => {
+    console.log(message)
     try {
         const { channel, data } = JSON.parse(message);
         if(!data){ return handleError({ws, errorMessage: constants.ERRORS.WRONG_WS_TYPE}) }
         else if(!(channel in routers)){ return handleError({ws, errorMessage: constants.ERRORS.WRONG_CHANNEL(channel)}) };
         (routers as any)[channel]({ws, data, channel});
     } catch (error) {
+        logger.error(error);
         return handleError({ws, errorMessage: constants.ERRORS.WRONG_WS_TYPE })
     }
 }

@@ -1,7 +1,9 @@
 import request from 'supertest';
 import WebSocket from "ws";
 import * as constants from './utils/constants'
-import { delay, waitForWebSocketClient } from './utils';
+import { delay, waitForWebSocketClient, convertImageToBase64, saveBase64AsImage } from './utils';
+import { type } from 'os';
+import path from 'path';
 
 describe('http server', () => {
     test('it should return "pong"', async () => {
@@ -72,11 +74,25 @@ describe('ws server', () => {
         expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_CHANNEL(channel)}`);
     });
 
-    test.only('image', async () => {
-        const channel = "image"
+    test('image', async () => {
+        const channel = "image";
+        const inputDirectory = path.join(__dirname, "image"),
+            imageName = "image_test.jpg";
+        const imageB64 = convertImageToBase64(inputDirectory, imageName);
         client.on("message", (data: string) => expectedMsg = data);
-        client.send(JSON.stringify({ channel, data: "example" })); //pasar la imagen en binario en data:example
+        client.send(JSON.stringify({ channel, data: imageB64 }));
         await waitForMessage();
         expect(expectedMsg.toString()).toEqual(`imagen recibida`); // poner el mensaje en \server\src\utils\constants.ts
+    });
+
+    test('saveBase64AsImage', async() => {
+        const outputDirectory = path.join(__dirname, "image", "imageRes"),
+            inputDirectory = path.join(__dirname, "image"),
+            imageName = "image_test.jpg",
+            imageOutput = "output_image.jpg";
+        
+        const imageB64 = convertImageToBase64(inputDirectory, imageName);
+
+        saveBase64AsImage(imageB64, outputDirectory, imageOutput);
     });
 });
