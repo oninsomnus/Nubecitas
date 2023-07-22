@@ -33,3 +33,5 @@ export const ERRORS = {
     WRONG_WS_TYPE: ' The WebSocket message type is not { channel: string, data: string }',
     WRONG_CHANNEL: wrongMessage
 }
+
+export const DEFAULT_CAPTURE_INTERVAL = 60*5;

@@ -1,8 +1,8 @@
 import request from 'supertest';
 import WebSocket from "ws";
 import * as constants from './utils/constants'
-import { delay, waitForWebSocketClient, convertImageToBase64, saveBase64AsImage } from './utils';
-import { type } from 'os';
+import { delay, waitForWebSocketClient, convertImageToBase64, saveBase64AsImage, intervalSaveImage } from './utils';
+import fs from 'fs';
 import path from 'path';
 
 describe('http server', () => {
@@ -74,15 +74,16 @@ describe('ws server', () => {
         expect(expectedMsg.toString()).toEqual(`Error: ${constants.ERRORS.WRONG_CHANNEL(channel)}`);
     });
 
-    test('image', async () => {
+    test('image with force false should return the same amount of file under imageRes dir', async () => {
         const channel = "image";
         const inputDirectory = path.join(__dirname, "image"),
             imageName = "image_test.jpg";
         const imageB64 = convertImageToBase64(inputDirectory, imageName);
+        const expected = fs.readdirSync(path.join(__dirname, "image/imageRes")).length;
         client.on("message", (data: string) => expectedMsg = data);
-        client.send(JSON.stringify({ channel, data: imageB64 }));
+        client.send(JSON.stringify({ channel, data: imageB64, force: false }));
         await waitForMessage();
-        expect(expectedMsg.toString()).toEqual(`imagen recibida`); // poner el mensaje en \server\src\utils\constants.ts
+        expect(expected).toEqual(fs.readdirSync(path.join(__dirname, "image/imageRes")).length); // poner el mensaje en \server\src\utils\constants.ts
     });
 
     test('saveBase64AsImage', async() => {
@@ -92,7 +93,38 @@ describe('ws server', () => {
             imageOutput = "output_image.jpg";
         
         const imageB64 = convertImageToBase64(inputDirectory, imageName);
-
         saveBase64AsImage(imageB64, outputDirectory, imageOutput);
     });
 });
+
+describe('intervalSaveImage', () => {
+    test('it should return false', () => {
+        const result = intervalSaveImage({force:false});
+        expect(result).toBeFalsy();
+    });
+    test('it should return true', () => {
+        const result = intervalSaveImage({force:true});
+        expect(result).toBeTruthy();
+    });
+    test('it should return false', () => {
+        const result = intervalSaveImage();
+        expect(result).toBeFalsy();
+    });
+    test('it should return false', () => {
+        const result = intervalSaveImage();
+        expect(result).toBeFalsy();
+    });
+    test('it should return false', () => {
+        const result = intervalSaveImage({});
+        expect(result).toBeFalsy();
+    });
+    test('it should return false', async () => {
+        const result = intervalSaveImage({intervalSeconds: 5});
+        expect(result).toBeFalsy();
+        const result2 = intervalSaveImage({intervalSeconds: 10});
+        expect(result2).toBeFalsy();
+        await delay(3000);
+        const result3 = intervalSaveImage({intervalSeconds: 2});
+        expect(result3).toBeTruthy();
+    });
+})
