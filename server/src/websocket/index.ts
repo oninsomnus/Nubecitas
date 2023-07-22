@@ -27,6 +27,6 @@ const resolveMessage = (ws: WebSocket, message: string): void | null => {
         (routers as any)[channel]({ws, data, channel});
     } catch (error) {
         logger.error(error);
-        return handleError({ws, errorMessage: constants.ERRORS.WRONG_WS_TYPE })
+        return handleError({ws, errorMessage: error })
     }
 }
