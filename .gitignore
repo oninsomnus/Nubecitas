@@ -1,7 +1,10 @@
 node_modules
 dist
 .DS_Store
+.vscode
 logs
 nohup.out
 server/src/image/imageRes/*
 !server/src/image/imageRes/.gitkeep
+camara/build
+camara/sdkconfig
