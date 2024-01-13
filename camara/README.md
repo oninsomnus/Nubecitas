@@ -26,3 +26,6 @@ Para chequear y monitorear el output:
 ```
 idf.py -p <USB_Serial> flash
 ```
+
+expressif components could be found here: https://components.espressif.com/
+expressif components documentation: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-component-manager.html

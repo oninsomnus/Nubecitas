@@ -18,8 +18,8 @@ export const HTTP_PATHS = {
 const wrongMessage = (channel: string) => {
     return ` This channel ${channel} doesn't exist`;
 }
-const wsChannelListened = (channel: string, data: string) => {
-    return `[ws] Channel: ${channel}, Data: ${data}`
+const wsChannelListened = (channel: string, data: string, id: string) => {
+    return `[ws] Id: ${id}, Channel: ${channel}, Data: ${data}`
 }
 export const MESSAGES = {
     HTTP_CONNECTION_STABLISHED: '[http] Connection detected',

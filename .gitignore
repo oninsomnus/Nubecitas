@@ -8,3 +8,6 @@ server/src/image/imageRes/*
 !server/src/image/imageRes/.gitkeep
 camara/build
 camara/sdkconfig
+camara/sdkconfig.old
+camara/main/cred.h
+camara/managed_components/
