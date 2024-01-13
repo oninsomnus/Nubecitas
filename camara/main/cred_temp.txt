@@ -1,0 +1,7 @@
+char* getUsername(){
+  return "";
+}
+
+char* getPassword(){
+  return "";
+}

@@ -3,9 +3,9 @@ import { IWebSocketChannel } from "../types";
 import path from 'path';
 
 export const test = (args: IWebSocketChannel) => {
-    const { ws, data, channel } = args;
+    const { ws, data, channel, id } = args;
     ws.send(data);
-    logger.info(constants.MESSAGES.WS_CHANNEL_LISTENED(channel, data));
+    logger.info(constants.MESSAGES.WS_CHANNEL_LISTENED(channel, data, id));
 }
 
 export const image = (args: IWebSocketChannel) => {

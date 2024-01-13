@@ -3,13 +3,20 @@ import { routers } from "./routers";
 import { IWebSocketChannel, IWebSocketError } from './types';
 import { WebSocket } from 'ws'; 
 import ws from 'ws';
-export const wss = new ws.Server({ port: constants.PORTS.WS });
+let wss: any;
+const start = () => {
+    wss = new ws.Server({ port: constants.PORTS.WS });
+}
+start();
 
 export const startWebsocketServer = () => {
     wss.on('connection', (ws: WebSocket) => {
         logger.info(constants.MESSAGES.WS_CONNECTION_STABLISHED);
         ws.on('message', (message: string) => {resolveMessage(ws, message)});
     });
+    wss.on('error', (err: Error) => {
+        start();
+    })
 }
 
 const handleError = (args: IWebSocketError): null => {
